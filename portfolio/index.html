@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ola Dev | Full-Stack Developer</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #111;
+            color: #fff;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Color Palette */
+        :root {
+            --primary-color: #FF4081;
+            --secondary-color: #40C4FF;
+            --background-color: #121212;
+            --highlight-color: #76FF03;
+        }
+
+        /* Light/Dark Mode */
+        body.dark {
+            background-color: #121212;
+            color: #fff;
+        }
+
+        body.light {
+            background-color: #fff;
+            color: #333;
+        }
+
+        /* Hero Section */
+        #hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(45deg, #ff4081, #40C4FF);
+            text-align: center;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        #hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            animation: slideUp 1s ease-in-out;
+        }
+
+        #hero p {
+            font-size: 1.5rem;
+            color: white;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Hover Animations */
+        .hover-effect:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
+
+        /* Mode Toggle */
+        .mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px;
+            background-color: #FF4081;
+            color: #fff;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s;
+        }
+
+        .mode-toggle:hover {
+            background-color: #76FF03;
+        }
+
+        /* About Section */
+        #about {
+            padding: 80px;
+            background-color: #1a1a1a;
+            text-align: center;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        /* Skills Section */
+        #skills {
+            padding: 80px;
+            background-color: #333;
+            text-align: center;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .skill-bar {
+            height: 12px;
+            width: 100%;
+            background-color: #444;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .skill-level {
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 8px;
+        }
+
+        /* Projects Section */
+        #projects {
+            padding: 80px;
+            background-color: #1a1a1a;
+            text-align: center;
+        }
+
+        .projects-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .project {
+            background-color: #222;
+            padding: 30px;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .project:hover {
+            transform: scale(1.05);
+            background-color: #333;
+        }
+
+        .project h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        .project a {
+            margin-top: 10px;
+            display: inline-block;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 80px;
+            background-color: #333;
+            text-align: center;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px solid #444;
+            border-radius: 8px;
+            background-color: #222;
+            color: #fff;
+        }
+
+        button {
+            padding: 15px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #76FF03;
+        }
+
+        footer {
+            padding: 20px;
+            text-align: center;
+            background-color: #111;
+            color: white;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        @keyframes fadeInOnScroll {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-on-scroll {
+    opacity: 0;
+    animation: fadeInOnScroll 1s forwards;
+}
+/* Message styling */
+.message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 80%;
+    max-width: 400px;
+    font-size: 16px;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Fade-in animation */
+.fade-in {
+    display: block;
+    opacity: 1;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Success (green) and Error (red) colors */
+.message.success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.message.error {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Fade-in animation keyframe */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Light/Dark Mode Toggle -->
+    <div class="mode-toggle" onclick="toggleMode()">🌙</div>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <h1>Hi, I'm Ola Dev</h1>
+        <p>A passionate Full-Stack Developer</p>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I'm a creative Full-Stack Developer with expertise in both front-end and back-end technologies. I love solving problems with code and building dynamic web applications.</p>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Skills</h2>
+        <div>
+            <h3>HTML</h3>
+            <div class="skill-bar">
+                <div class="skill-level" style="width: 90%"></div>
+            </div>
+            <h3>CSS</h3>
+            <div class="skill-bar">
+                <div class="skill-level" style="width: 85%"></div>
+            </div>
+            <h3>JavaScript</h3>
+            <div class="skill-bar">
+                <div class="skill-level" style="width: 80%"></div>
+            </div>
+            <h3>PHP</h3>
+            <div class="skill-bar">
+                <div class="skill-level" style="width: 75%"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>My Projects</h2>
+        <div class="projects-container">
+            <div class="project">
+                <h3>Project 1</h3>
+                <p>A dynamic e-commerce site using PHP and MySQL.</p>
+                <a href="#">View Project</a>
+            </div>
+            <div class="project">
+                <h3>Project 2</h3>
+                <p>A full-stack job portal with AI-based recommendations.</p>
+                <a href="#">View Project</a>
+            </div>
+            <div class="project">
+                <h3>Project 3</h3>
+                <p>A portfolio website showcasing creative work.</p>
+                <a href="#">View Project</a>
+            </div>
+        </div>
+    </section>
+    <div id="preloader" class="preloader">
+        <div class="loader"></div>
+    </div>
+    
+    <script>
+        window.onload = () => {
+            document.getElementById('preloader').style.display = 'none';
+        };
+    </script>
+    
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form id="contactForm">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        
+        <!-- Message Display -->
+        <div id="messageDisplay" class="message"></div>
+        
+    </section>
+    
+    <div class="social-media">
+        <a href="https://twitter.com/your_handle" target="_blank">
+            <span id="twitter-followers">Follow on Twitter</span>
+        </a>
+    </div>
+    
+    <script>
+        // Fetch live follower count via API (pseudo code)
+        fetch('https://api.twitter.com/your-api-endpoint')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('twitter-followers').innerText = `Follow on Twitter (${data.followers_count})`;
+            });
+    </script>
+    
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Ola Dev. All Rights Reserved.</p>
+    </footer>
+    
+
+    <!-- JavaScript -->
+    <script>
+        // Light/Dark Mode Toggle
+        function toggleMode() {
+            const body = document.body;
+            const modeToggle = document.querySelector('.mode-toggle');
+            body.classList.toggle('dark');
+            body.classList.toggle('light');
+            modeToggle.innerHTML = body.classList.contains('dark') ? '🌞' : '🌙';
+        }
+        window.addEventListener('scroll', function () {
+    const fadeElements = document.querySelectorAll('.fade-on-scroll');
+    fadeElements.forEach(function (element) {
+        if (element.getBoundingClientRect().top < window.innerHeight) {
+            element.classList.add('fade-in');
+        }
+    });
+});
+const hours = new Date().getHours();
+const greeting = hours < 12 ? 'Good Morning' : hours < 18 ? 'Good Afternoon' : 'Good Evening';
+document.querySelector('#hero h1').innerHTML = `${greeting}, I'm Ola Dev`;
+
+    </script>
+    <script>
+        // Handle form submission
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+            e.preventDefault(); // Prevent the default form submission
+    
+            // Get form data
+            let formData = new FormData(this);
+    
+            // Create an AJAX request
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "contact_form_handler.php", true);
+    
+            // Handle the response
+            xhr.onload = function () {
+                const response = JSON.parse(xhr.responseText);
+    
+                let messageDiv = document.getElementById("messageDisplay");
+    
+                // Show the message with dynamic styles
+                if (response.status === "success") {
+                    messageDiv.innerHTML = response.message;
+                    messageDiv.style.backgroundColor = "#4CAF50"; // Green for success
+                    messageDiv.style.color = "#fff";
+                } else {
+                    messageDiv.innerHTML = response.message;
+                    messageDiv.style.backgroundColor = "#f44336"; // Red for error
+                    messageDiv.style.color = "#fff";
+                }
+    
+                // Display the message with a fade-in effect
+                messageDiv.classList.add("fade-in");
+                setTimeout(function () {
+                    messageDiv.classList.remove("fade-in");
+                }, 4000); // Remove message after 4 seconds
+            };
+    
+            // Send the form data
+            xhr.send(formData);
+        });
+    </script>
+    
+
+</body>
+
+</html>
+ 
